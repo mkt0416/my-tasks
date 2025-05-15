@@ -1,7 +1,7 @@
 
 import { TaskModel } from "@/models/task";
 import { connectDB } from "@/utils/database";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 type Props = {
     params: {
@@ -9,7 +9,7 @@ type Props = {
     };
 };
 
-export async function GET(_: NextResponse, { params }: Props) {
+export async function GET(_: NextRequest, { params }: Props) {
     try {
         await connectDB();
         const task = await TaskModel.findById(params.id);
